@@ -102,6 +102,7 @@ app = Flask(__name__)
 
 @app.route("/dates", methods=["POST"])
 def get_dates():
+    print("/dates called")
     req_data = request.get_json()
     date_requested = req_data.get("date_requested")
     dates_around_requested_date = get_dates_around(date_requested)
@@ -112,6 +113,7 @@ def get_dates():
 
 @app.route("/availableslots", methods=["POST"])
 def get_available_slots():
+    print("/availableslots called")
     req_data = request.get_json()
     date_requested = req_data.get("date_requested")
     available_timeslots = find_available_slots(date_requested, req_data.get("duration_requested_minutes"))
@@ -128,6 +130,7 @@ def get_available_slots():
 
 @app.route("/bookappointment", methods=["POST"])
 def book_appointment():
+    print("/bookappointment called")
     req_data = request.get_json()
     # requested_appointment_slot = req_data.get("requested_appointment_slot")
     d = req_data['date']
