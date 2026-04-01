@@ -1,5 +1,5 @@
 from local_services.appointmentbooking.client import AppointmentBookingClient
-
+import json
 
 class AppointmentBookingService(object):
 
@@ -11,7 +11,7 @@ class AppointmentBookingService(object):
            "date_requested": date_requested
         }
         response = self.client._get_dates(data=data, context=context)
-        return response.get('status', {})
+        return response
 
     def get_timeslots(self, date_requested, duration_requested, context):
         data = {
@@ -19,7 +19,7 @@ class AppointmentBookingService(object):
             "duration_requested_minutes": duration_requested
         }
         response = self.client._get_timeslots(data=data, context=context)
-        return response.get('status', {})
+        return response
 
     def do_booking(self, date_requested, time_slot, context):
         data = {
@@ -27,4 +27,4 @@ class AppointmentBookingService(object):
             "time_slot": time_slot
         }
         response = self.client._do_booking(data=data, context=context)
-        return response.get('status', {})
+        return response
